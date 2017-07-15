@@ -4,16 +4,16 @@ function Initialize(Plugin)
 
     LOG("Initializing SampleForgeMod...")
 
-    cPluginManager.AddHook(cPluginManager.HOOK_PLAYER_FORGE_MODS, OnPlayerForgeMods)
+    cPluginManager.AddHook(cPluginManager.HOOK_LOGIN_FORGE, OnLoginForge)
     
     LOG("Initialized SampleForgeMod!")
 
     return true
 end
 
-function OnPlayerForgeMods(Client, Mods)
+function OnLoginForge(Client)
     LOG("SampleForgeMod received forge mods connection")
-    -- LOG("Mods: " .. Mods)
+    -- TODO: Client:GetForgeMods()
 
     return false -- Allow all connections
 end
