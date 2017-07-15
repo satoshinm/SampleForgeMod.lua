@@ -23,11 +23,8 @@ function OnLoginForge(Client)
         LOG("SampleForgeMod mod #" .. i .. " is " .. name .. " version " .. version)
     end
 
-    if mods:HasMod("ironchest") then
-        LOG("SampleForgeMod is denying ironchest user!")
-        Client:Kick("You can't connect to this server with ironchest installed")
-        return true
-    end
+    Client:Kick("Forge not allowed on this server")
+    return true
 
-    return false -- Allow all connections
+    --return false -- Allow all connections
 end
