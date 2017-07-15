@@ -5,7 +5,8 @@ function Initialize(Plugin)
     LOG("Initializing SampleForgeMod...")
 
     cPluginManager.AddHook(cPluginManager.HOOK_LOGIN_FORGE, OnLoginForge)
-    cRoot:Get():GetServer():RegisterForgeMod(0, "foo", "1.2.3")
+    cRoot:Get():GetServer():RegisterForgeMod("foo", "1.2.3")
+    cRoot:Get():GetServer():RegisterForgeModForProtocol("special mod", "7", 335)
     
     LOG("Initialized SampleForgeMod!")
 
