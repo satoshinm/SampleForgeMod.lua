@@ -23,8 +23,14 @@ function OnLoginForge(Client)
         LOG("SampleForgeMod mod #" .. i .. " is " .. name .. " version " .. version)
     end
 
-    Client:Kick("Forge not allowed on this server")
-    return true
+    -- Example of denying clients with a specific Forge mod from connecting
+    -- This is a fairly harmless client mod for demonstrating purposes: https://minecraft.curseforge.com/projects/nofov
+    -- Of course, a sophisticated player could trivially bypass this protection
+    if mods:HasMod("nofov") then
+        LOG("SampleForgeMod is denying NoFov user!")
+        Client:Kick("You can't connect to this server with NoFov installed. Please disable this mod and reconnect.")
+        return true
+    end
 
-    --return false -- Allow all connections
+    return false -- Allow all connections
 end
