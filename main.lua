@@ -63,5 +63,11 @@ function OnLoginForge(Client)
         return true
     end
 
+    if not mods:HasMod("ironchest") then
+        LOG("SampleForgeMod is denying non-ironchest user")
+        Client:Kick("This server requires the Iron Chests mod. Please install it and reconnect.")
+        return true
+    end
+
     return false -- Allow all connections
 end
