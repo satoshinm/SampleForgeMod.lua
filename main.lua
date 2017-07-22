@@ -7,10 +7,24 @@ function Initialize(Plugin)
     cPluginManager.AddHook(cPluginManager.HOOK_LOGIN_FORGE, OnLoginForge)
     cRoot:Get():GetServer():RegisterForgeMod("foo", "1.2.3")
     cRoot:Get():GetServer():RegisterForgeModForProtocol("special mod", "7", 335)
+
+    cPluginManager.AddHook(cPluginManager.HOOK_LOGIN, OnLogin)
     
     LOG("Initialized SampleForgeMod!")
 
     return true
+end
+
+function OnLogin(Client, ProtocolVersion, UserName)
+    LOG("SampleForgeMod received OnLogin")
+    if Client:IsModded() then
+        LOG("Client is modded!")
+    else
+        LOG("Client is NOT modded")
+        -- TODO: fix this, logs "Sending a DC" but client stays on "Logging in..."
+        -- Client:Kick("This server requires Forge. Please install Forge on your client and reconnect.")
+        return true
+    end
 end
 
 function OnLoginForge(Client)
