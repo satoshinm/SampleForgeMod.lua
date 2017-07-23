@@ -8,7 +8,6 @@ function Initialize(Plugin)
     cRoot:Get():GetServer():RegisterForgeMod("foo", "1.2.3")
     cRoot:Get():GetServer():RegisterForgeModForProtocol("special mod", "7", 335)
 
-    cPluginManager.AddHook(cPluginManager.HOOK_LOGIN, OnLogin)
     cPluginManager.AddHook(cPluginManager.HOOK_PLAYER_JOINED, OnPlayerJoined)
     
     LOG("Initialized SampleForgeMod!")
@@ -16,23 +15,12 @@ function Initialize(Plugin)
     return true
 end
 
-function OnLogin(Client, ProtocolVersion, UserName)
-    LOG("SampleForgeMod received OnLogin")
-    if Client:IsModded() then
-        LOG("Client is modded!")
-    else
-        LOG("Client is NOT modded")
-        -- TODO: fix this, logs "Sending a DC" but client stays on "Logging in..."
-        -- https://github.com/cuberite/cuberite/issues/3868 HOOK_LOGIN causes client to hang and timeout, instead of getting kicked
-        -- Client:Kick("This server requires Forge. Please install Forge on your client and reconnect.")
-        -- return true
-        --
-        -- As a workaround (see below), kick in OnPlayerJoined instead:
-    end
-end
-
 function OnPlayerJoined(Player)
     local Client = Player:GetClientHandle()
+
+    -- TODO: This check can be performed in HOOK_LOGIN (instead of HOOK_PLAYER_JOINED),
+    -- but 'return true' or Client:Kick both only cause the client to hang:
+    -- https://github.com/cuberite/cuberite/issues/3868 HOOK_LOGIN causes client to hang and timeout, instead of getting kicked
 
     if not Client:IsModded() then
         LOG("Kicking non-modded player!")
