@@ -15,6 +15,12 @@ function Initialize(Plugin)
     return true
 end
 
+function OnDisable()
+    LOG("SampleForgeMod is shutting down...")
+    cRoot:Get():GetServer():UnregisterForgeMod("foo")
+    cRoot:Get():GetServer():UnregisterForgeModForProtocol("special mod", 335)
+end
+
 function OnPlayerJoined(Player)
     local Client = Player:GetClientHandle()
 
