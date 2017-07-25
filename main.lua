@@ -5,8 +5,14 @@ function Initialize(Plugin)
     LOG("Initializing SampleForgeMod...")
 
     cPluginManager.AddHook(cPluginManager.HOOK_LOGIN_FORGE, OnLoginForge)
+
     cRoot:Get():GetServer():RegisterForgeMod("foo", "1.2.3")
     cRoot:Get():GetServer():RegisterForgeModForProtocol("special mod", "7", 335)
+
+    cRoot:Get():GetServer():RegisterForgeModForProtocol("ironchest", "1.12-7.0.31.818", 335) -- 1.12
+    --cRoot:Get():GetServer():RegisterForgeModForProtocol("ironchest", "1.11.2-7.0.25.815", 316) -- TODO: 1.11.2 and other versions
+    --cRoot:Get():GetServer():RegisterForgeMod("ironchest", "1.0") -- client-side detects as incompatible mod version
+
 
     cPluginManager.AddHook(cPluginManager.HOOK_PLAYER_JOINED, OnPlayerJoined)
     
@@ -19,6 +25,7 @@ function OnDisable()
     LOG("SampleForgeMod is shutting down...")
     cRoot:Get():GetServer():UnregisterForgeMod("foo")
     cRoot:Get():GetServer():UnregisterForgeModForProtocol("special mod", 335)
+    cRoot:Get():GetServer():UnregisterForgeMod("ironchest")
 end
 
 function OnPlayerJoined(Player)
