@@ -50,7 +50,7 @@ function OnLoginForge(Client)
 
     for i = 1, mods:GetNumMods() do
         local name = mods:GetModNameAt(i - 1)
-        local version = mods:GetModVersionAt(i - 1)
+        local version = mods:GetModVersion(name)
 
         LOG("SampleForgeMod mod #" .. i .. " is " .. name .. " version " .. version)
     end
