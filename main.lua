@@ -35,8 +35,8 @@ function OnPlayerJoined(Player)
     -- but 'return true' or Client:Kick both only cause the client to hang:
     -- https://github.com/cuberite/cuberite/issues/3868 HOOK_LOGIN causes client to hang and timeout, instead of getting kicked
 
-    if not Client:IsModded() then
-        LOG("Kicking non-modded player!")
+    if not Client:IsForgeClient() then
+        LOG("Kicking non-Forge player!")
         Client:Kick("This server requires Forge. Please install Forge on your client and reconnect.")
         return true
     end
