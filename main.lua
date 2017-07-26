@@ -10,7 +10,7 @@ function Initialize(Plugin)
     cRoot:Get():GetServer():RegisterForgeModForProtocol("special mod", "7", 335)
 
     cRoot:Get():GetServer():RegisterForgeModForProtocol("ironchest", "1.12-7.0.31.818", 335) -- 1.12
-    --cRoot:Get():GetServer():RegisterForgeModForProtocol("ironchest", "1.11.2-7.0.25.815", 316) -- TODO: 1.11.2 and other versions
+    cRoot:Get():GetServer():RegisterForgeModForProtocol("ironchest", "1.11.2-7.0.25.815", 316) -- 1.11.2
     --cRoot:Get():GetServer():RegisterForgeMod("ironchest", "1.0") -- client-side detects as incompatible mod version
 
 
