@@ -6,8 +6,8 @@ function Initialize(Plugin)
 
     cPluginManager.AddHook(cPluginManager.HOOK_LOGIN_FORGE, OnLoginForge)
 
-    cRoot:Get():GetServer():RegisterForgeMod("foo", "1.2.3")
-    local isSuccess, err = pcall(function () cRoot:Get():GetServer():RegisterForgeMod("foo", "1.2.3") end)
+    cRoot:Get():GetServer():RegisterForgeMod("example mod", "1.2.3", 335) -- 1.12
+    local isSuccess, err = pcall(function () cRoot:Get():GetServer():RegisterForgeMod("example mod", "1.2.3", 335) end)
     if not(isSuccess) then
         LOG("Passed test for duplicate mod registration: " .. err)
     else
@@ -15,10 +15,10 @@ function Initialize(Plugin)
     end
 
 
-    cRoot:Get():GetServer():RegisterForgeModForProtocol("special mod", "7", 335)
 
-    cRoot:Get():GetServer():RegisterForgeModForProtocol("ironchest", "1.12-7.0.31.818", 335) -- 1.12
-    cRoot:Get():GetServer():RegisterForgeModForProtocol("ironchest", "1.11.2-7.0.25.815", 316) -- 1.11.2
+
+    cRoot:Get():GetServer():RegisterForgeMod("ironchest", "1.12-7.0.31.818", 335) -- 1.12
+    cRoot:Get():GetServer():RegisterForgeMod("ironchest", "1.11.2-7.0.25.815", 316) -- 1.11.2
     --cRoot:Get():GetServer():RegisterForgeMod("ironchest", "1.0") -- client-side detects as incompatible mod version
 
 
@@ -31,9 +31,9 @@ end
 
 function OnDisable()
     LOG("SampleForgeMod is shutting down...")
-    cRoot:Get():GetServer():UnregisterForgeMod("foo")
-    cRoot:Get():GetServer():UnregisterForgeModForProtocol("special mod", 335)
-    cRoot:Get():GetServer():UnregisterForgeMod("ironchest")
+    cRoot:Get():GetServer():UnregisterForgeMod("example mod", 335)
+    cRoot:Get():GetServer():UnregisterForgeMod("ironchest", 335)
+    cRoot:Get():GetServer():UnregisterForgeMod("ironchest", 316)
 end
 
 function OnPlayerJoined(Player)
