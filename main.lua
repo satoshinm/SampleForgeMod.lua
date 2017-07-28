@@ -7,6 +7,14 @@ function Initialize(Plugin)
     cPluginManager.AddHook(cPluginManager.HOOK_LOGIN_FORGE, OnLoginForge)
 
     cRoot:Get():GetServer():RegisterForgeMod("foo", "1.2.3")
+    local isSuccess, err = pcall(function () cRoot:Get():GetServer():RegisterForgeMod("foo", "1.2.3") end)
+    if not(isSuccess) then
+        LOG("Passed test for duplicate mod registration: " .. err)
+    else
+        LOG("FAILED to detect duplicate mod registration!")
+    end
+
+
     cRoot:Get():GetServer():RegisterForgeModForProtocol("special mod", "7", 335)
 
     cRoot:Get():GetServer():RegisterForgeModForProtocol("ironchest", "1.12-7.0.31.818", 335) -- 1.12
