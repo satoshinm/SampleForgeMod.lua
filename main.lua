@@ -54,24 +54,25 @@ end
 function OnLoginForge(Client)
     LOG("SampleForgeMod received forge mods connection")
     local mods = Client:GetForgeMods()
-    --LOG("SampleForgeMod got mods: " .. mods:GetNumMods())
+    LOG("SampleForgeMod got mods: " .. mods:GetNumMods())
 
-    local i = 0
-    for name, version in pairs(mods) do
+    for i = 1, mods:GetNumMods() do
+        local name = mods:GetModNameAt(i - 1)
+        local version = mods:GetModVersion(name)
+
         LOG("SampleForgeMod mod #" .. i .. " is " .. name .. " version " .. version)
-        i = i + 1
     end
 
     -- Example of denying clients with a specific Forge mod from connecting
     -- This is a fairly harmless client mod for demonstrating purposes: https://minecraft.curseforge.com/projects/nofov
     -- Of course, a sophisticated player could trivially bypass this protection
-    if mods["nofov"] ~= nil then
+    if mods:HasMod("nofov") then
         LOG("SampleForgeMod is denying NoFov user!")
         Client:Kick("You can't connect to this server with NoFov installed. Please disable this mod and reconnect.")
         return true
     end
 
-    if mods["ironchest"] == nil then
+    if not mods:HasMod("ironchest") then
         LOG("SampleForgeMod is denying non-ironchest user")
         Client:Kick("This server requires the Iron Chests mod. Please install it and reconnect.")
         return true
