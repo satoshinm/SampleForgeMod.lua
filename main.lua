@@ -51,16 +51,24 @@ function OnPlayerJoined(Player)
 end
 
 
-function OnLoginForge(Client)
+function OnLoginForge(Client, mods)
     LOG("SampleForgeMod received forge mods connection")
-    local mods = Client:GetForgeMods()
-    --LOG("SampleForgeMod got mods: " .. mods:GetNumMods())
 
     local i = 0
     for name, version in pairs(mods) do
         LOG("SampleForgeMod mod #" .. i .. " is " .. name .. " version " .. version)
         i = i + 1
     end
+
+    -- Same as passed parameter, but demonstrate calling GetForgeMods() method
+    mods2 = Client:GetForgeMods()
+    local j = 0
+    for name, version in pairs(mods2) do
+        LOG("(2) SampleForgeMod mod #" .. j .. " is " .. name .. " version " .. version)
+        j = j + 1
+    end
+
+
 
     -- Example of denying clients with a specific Forge mod from connecting
     -- This is a fairly harmless client mod for demonstrating purposes: https://minecraft.curseforge.com/projects/nofov
