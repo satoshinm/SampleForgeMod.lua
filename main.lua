@@ -17,8 +17,7 @@ function Initialize(Plugin)
 
 
 
-    cRoot:Get():GetServer():RegisterForgeMod("Colossal Chests", "1.12-1.6.5", 338) -- 1.12.1
-    cRoot:Get():GetServer():RegisterForgeMod("ironchest", "1.12.1-xxx", 338) -- 1.12.1
+    cRoot:Get():GetServer():RegisterForgeMod("ironchest", "1.12-7.0.31.818", 338) -- 1.12.1
     cRoot:Get():GetServer():RegisterForgeMod("ironchest", "1.12-7.0.31.818", 335) -- 1.12
     cRoot:Get():GetServer():RegisterForgeMod("ironchest", "1.11.2-7.0.25.815", 316) -- 1.11.2
     --cRoot:Get():GetServer():RegisterForgeMod("ironchest", "1.0") -- client-side detects as incompatible mod version
